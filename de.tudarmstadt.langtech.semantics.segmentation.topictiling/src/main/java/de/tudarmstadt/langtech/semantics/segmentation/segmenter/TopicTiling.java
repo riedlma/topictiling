@@ -1,4 +1,4 @@
-package de.tudarmstadt.ukp.dkpro.semantics.segmentation.segmenter;
+package de.tudarmstadt.langtech.semantics.segmentation.segmenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,8 +15,8 @@ import jgibbslda.Model;
 
 import org.uimafit.util.JCasUtil;
 
+import de.tudarmstadt.langtech.lda.type.Topic;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
-import de.tudarmstadt.ukp.dkpro.lda.type.Topic;
 
 public class TopicTiling {
 	public enum DepthScore {

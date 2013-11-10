@@ -6,7 +6,7 @@
   <vendor/>
   <types>
     <typeDescription>
-      <name>de.tudarmstadt.ukp.dkpro.semantics.type.SegmentScore</name>
+      <name>de.tudarmstadt.langtech.semantics.type.SegmentScore</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>
       <features>

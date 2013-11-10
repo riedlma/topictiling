@@ -1,4 +1,4 @@
-package de.tudarmstadt.ukp.dkpro.semantics.segmentation.segmenter.annotator;
+package de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -12,8 +12,8 @@ import org.uimafit.component.JCasAnnotator_ImplBase;
 import org.uimafit.descriptor.ConfigurationParameter;
 import org.uimafit.util.JCasUtil;
 
+import de.tudarmstadt.langtech.semantics.type.SegmentScore;
 import de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData;
-import de.tudarmstadt.ukp.dkpro.semantics.type.SegmentScore;
 
 public class OutputSegments extends JCasAnnotator_ImplBase {
 	public static final String PARAM_OUTPUT = "Output";

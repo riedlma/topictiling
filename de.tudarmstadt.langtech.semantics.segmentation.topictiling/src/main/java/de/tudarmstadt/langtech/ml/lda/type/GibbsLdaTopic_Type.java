@@ -1,6 +1,6 @@
 
 /* First created by JCasGen Fri Nov 08 16:28:12 CET 2013 */
-package de.tudarmstadt.ukp.dkpro.ml.lda.type;
+package de.tudarmstadt.langtech.ml.lda.type;
 
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JCasRegistry;

@@ -1,4 +1,4 @@
-package de.tudarmstadt.ukp.dkpro.semantics.segmentation.segmenter;
+package de.tudarmstadt.langtech.semantics.segmentation.segmenter;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

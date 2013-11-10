@@ -1,4 +1,4 @@
-package de.tudarmstadt.ukp.dkpro.semantics.segmentation.segmenter.annotator;
+package de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -13,14 +13,14 @@ import org.uimafit.component.JCasAnnotator_ImplBase;
 import org.uimafit.descriptor.ConfigurationParameter;
 import org.uimafit.util.JCasUtil;
 
+import de.tudarmstadt.langtech.semantics.segmentation.segmenter.TextTilingWindowOptimized;
+import de.tudarmstadt.langtech.semantics.segmentation.segmenter.TopicTiling;
+import de.tudarmstadt.langtech.semantics.type.Segment;
+import de.tudarmstadt.langtech.semantics.type.SegmentQuantity;
+import de.tudarmstadt.langtech.semantics.type.SegmentScore;
 import de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
-import de.tudarmstadt.ukp.dkpro.semantics.segmentation.segmenter.TextTilingWindowOptimized;
-import de.tudarmstadt.ukp.dkpro.semantics.segmentation.segmenter.TopicTiling;
-import de.tudarmstadt.ukp.dkpro.semantics.type.Segment;
-import de.tudarmstadt.ukp.dkpro.semantics.type.SegmentQuantity;
-import de.tudarmstadt.ukp.dkpro.semantics.type.SegmentScore;
 
 public class TopicTilingSegmenterAnnotator extends JCasAnnotator_ImplBase {
 	private boolean printSegments = false;

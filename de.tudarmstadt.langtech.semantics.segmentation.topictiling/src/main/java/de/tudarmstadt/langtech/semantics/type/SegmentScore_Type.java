@@ -1,6 +1,6 @@
 
 /* First created by JCasGen Fri Nov 08 16:51:38 CET 2013 */
-package de.tudarmstadt.ukp.dkpro.semantics.type;
+package de.tudarmstadt.langtech.semantics.type;
 
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JCasRegistry;

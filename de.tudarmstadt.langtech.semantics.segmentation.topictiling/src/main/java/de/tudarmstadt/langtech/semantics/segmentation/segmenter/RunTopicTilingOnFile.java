@@ -1,4 +1,5 @@
-package de.tudarmstadt.ukp.dkpro.semantics.segmentation;
+package de.tudarmstadt.langtech.semantics.segmentation.segmenter;
+
 
 import java.io.IOException;
 
@@ -13,10 +14,10 @@ import org.uimafit.factory.AnalysisEngineFactory;
 import org.uimafit.factory.CollectionReaderFactory;
 import org.uimafit.pipeline.SimplePipeline;
 
+import de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator.OutputSegments;
+import de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator.TopicTilingSegmenterAnnotator;
 import de.tudarmstadt.ukp.dkpro.core.io.text.TextReader;
 import de.tudarmstadt.ukp.dkpro.core.stanfordnlp.StanfordSegmenter;
-import de.tudarmstadt.ukp.dkpro.semantics.segmentation.segmenter.annotator.OutputSegments;
-import de.tudarmstadt.ukp.dkpro.semantics.segmentation.segmenter.annotator.TopicTilingSegmenterAnnotator;
 
 public class RunTopicTilingOnFile {
 	
