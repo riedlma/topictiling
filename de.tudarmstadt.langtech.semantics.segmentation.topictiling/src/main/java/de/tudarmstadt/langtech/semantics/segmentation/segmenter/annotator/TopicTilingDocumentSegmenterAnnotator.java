@@ -1,3 +1,26 @@
+/**
+ *	Martin Riedl
+ *	riedl@cs.tu-darmstadt.de
+ *  FG Language Technology
+ * 	Technische Universität Darmstadt, Germany
+ * 
+ * 
+ *  This file is part of TopicTiling.
+ *
+ *  TopicTiling is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  TopicTiling is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with TopicTiling.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator;
 
 import java.text.DecimalFormat;
@@ -110,14 +133,10 @@ public class TopicTilingDocumentSegmenterAnnotator
 		buffer.append(toListInR(getGoldSegments(jcas), "seg"));
 		buffer.append(toListInR(tt.minimaPosition, "canSeg"));
 		buffer.append(toListInR(tt.depthScores, "depth"));
-		// buffer.append(toListInR(getSentenceLengths(jcas), "senLen"));
-		// buffer.append("X11();");
-		// buffer.append("dev.new(width=20,heigth=7);");
 		buffer.append("plot(0:"
 				+ (tt.similarityScores.size() - 1)
 				+ ",cos,type='l',xlab='Sentence',ylab='cosine similarity',main='"
 				+ main + "');\n");
-		// buffer.append("lines(senLen);\n");
 		buffer.append("abline(v=seg,col='red',lty=5);\n");
 		buffer.append("abline(v=estSeg,col='green',lwd=2,lty=4);\n");
 		buffer.append("abline(v=seg[seg%in%estSeg],col='black',lwd=3);\n");
@@ -127,7 +146,6 @@ public class TopicTilingDocumentSegmenterAnnotator
 				+ tt.minimaPosition.size() + "),col='blue',pch=23);\n");
 		buffer.append("text(canSeg[-length(canSeg)],rep(max(cos)*c(0.84,0.88,0.92,0.94),length="
 				+ tt.depthScores.size() + "),labels=depth);\n");
-		// buffer.append("dev.copy(pdf,'"+m.getDocumentTitle()+".pdf')\n");
 		buffer.append("dev.off();dev.off()");
 		System.out.println(buffer.toString());
 

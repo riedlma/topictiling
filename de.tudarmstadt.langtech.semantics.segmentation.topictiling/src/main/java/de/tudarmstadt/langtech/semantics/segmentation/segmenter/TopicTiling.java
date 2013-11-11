@@ -1,3 +1,27 @@
+/**
+ *	Martin Riedl
+ *	riedl@cs.tu-darmstadt.de
+ *  FG Language Technology
+ * 	Technische Universität Darmstadt, Germany
+ * 
+ * 
+ *  This file is part of TopicTiling.
+ *
+ *  TopicTiling is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  TopicTiling is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with TopicTiling.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
 package de.tudarmstadt.langtech.semantics.segmentation.segmenter;
 
 import java.util.ArrayList;
@@ -51,36 +75,7 @@ public class TopicTiling {
 		useAssignedTopics = topicsAssigned;
 
 		sw = new ArrayList<String>();
-		// sw.add("be");
-		// sw.add("A");
-		// sw.add("I");
-		// sw.add("In");
-		// sw.add("more");
-		// sw.add("would");
-		// sw.add("new");
-		// sw.add("last");
-		// sw.add("were");
-		// sw.add("would");
-		// sw.add("Mr");
-		// sw.add("been");
-		// sw.add("have");
-		// sw.add("U");
-		// sw.add("was");
-		// sw.add("year");
-		// sw.add("S");
-		// sw.add("has");
-		// sw.add("are");
-		// sw.add("is");
-		// sw.add("will");
-		// sw.add("%");
-		// sw.add("said");
-		// sw.add("The");
-		// sw.add("'s");
-		// sw.add("and");
-		// sw.add("the");
-		// sw.add(".");
-		// sw.add(",");
-		// sw.clear();
+		
 		this.depthScore = DepthScore.valueOf(depthScore);
 		this.ldaModelDirectory = ldaModelDirectory;
 		this.ldaModelName = ldaModelName;
@@ -97,21 +92,7 @@ public class TopicTiling {
 			inf.init(opt);
 			inf.niters = inferenceIterations;
 		}
-		// weights = new double[inf.trnModel.K];
-		// int total = 0;
-		// for(int i=0;i<inf.trnModel.z.length;i++){
-		// double val = 0;
-		// for(int j=0;j<inf.trnModel.z[i].size();j++){
-		// weights[inf.trnModel.z[i].get(j)]++;
-		// total++;
-		//
-		// }
-		// }
-		// for(int i=0;i<weights.length;i++){
-		// weights[i]/=total;
-		// }
-		// System.out.println(Arrays.toString(weights));
-
+		
 	}
 
 	public TopicTiling(String ldaModelDirectory, String ldaModelName,
@@ -130,14 +111,10 @@ public class TopicTiling {
 	public List<Integer> segment(List<List<Token>> sentences, int segmentNumber) {
 		this.segmentNumber = segmentNumber;
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-		// if (segmentNumber < 0) {
-		// if(repeatSegmentation||)
-		// return segment2(sentences);
-		// }
+	
 		for (int i = 0; i < repeatSegmentation; i++) {
 
 			List<Integer> segments = segment2(sentences);
-			// System.out.println(segments);
 			for (int value : segments) {
 				int count = 0;
 				if (map.containsKey(value)) {
@@ -147,7 +124,6 @@ public class TopicTiling {
 
 			}
 		}
-		// System.out.println(map);
 		List<Integer> segments = new ArrayList<Integer>();
 		for (int i = repeatSegmentation; i >= 0; i--) {
 			for (Entry<Integer, Integer> e : map.entrySet()) {
@@ -162,21 +138,7 @@ public class TopicTiling {
 			}
 		}
 		Collections.sort(segments);
-//		if (segments.size() == 0) {
-//			System.out.println("0 SIMILARITIES");
-//			for (List<Token> sentence : sentences) {
-//				List<Integer> topicIdList = new ArrayList<Integer>();
-//				for (Token token : sentence) {
-//					List<Topic> topicIds = JCasUtil.selectCovered(
-//							Topic.class, token);
-////					if(topicIds.size()==1){
-////						System.out.println(topicIds.get(0).getCoveredText()+" "+topicIds.get(0).getTopicId()+" "+topicIds.get(0).getTopicModeId());
-////					}else{
-////						System.out.println(topicIds.size()+token.getCoveredText());
-////					}
-//				}
-//			}
-//		}
+
 		return segments;
 	}
 
@@ -201,9 +163,7 @@ public class TopicTiling {
 			System.err.println("segment size:" + segments.size());
 			System.err.println("similarites: " + similarityScores);
 		}
-		// System.out.println("Segments: "+segments);
-		// System.out.println("scores: "+similarityScores);
-		// System.out.println("segments: " +segments);
+	
 		return segments;
 	}
 
@@ -222,20 +182,14 @@ public class TopicTiling {
 				}
 			}
 		}
-		// if(segments.size()==0){
-		// System.err.println(depthScores);
-		// System.err.println(similarityScores);
-		// }
+	
 		return segments;
 	}
 
 	private void printTopicWordAnnotation(List<Integer>[] newZ,
 			List<Integer>[] otherZ, String[] partsArray, Model m) {
 
-		// for highest number
-		// for (int i =0;i<partsArray.length;i++) {
-		// System.out.println(newZ[i]+"\t"+partsArray[i]);
-		// }
+		
 		int i = 0;
 		for (String s : partsArray) {
 			int j = 0;
@@ -405,28 +359,16 @@ public class TopicTiling {
 			modelZ = m.z;
 
 			// modification
-			// System.out.println("modeCounting");
 			if (modeCounting)
 				modelZ = getTopicListFromRepeated(inf.values, partsArray,
 						inferenceIterations, 1);
-			// printDim(modelZ);
-			// printDim(m.z);
-			// System.out.println("MODELEDED: "+modelZ);
-			// System.out.println("ZORIG    : "+m.z);
 			if (repeatInference == 1) {
 				for (i = 0; i < partsArray.length - window; i++) {
-					// int[] v1 = getVector(m.K, m.z[i]);
-					// int[] v2 = getVector(m.K, m.z[i + window]);
-					// double sim = calculateDotProduct(v1, v2);
-					// System.out.println("MODELEDED: "+modelZ[i]);
-					// System.out.println("ZORIG    : "+m.z[i]);
-
-					similarities.add(calculateSimilarity(m.K, i, modelZ,
+							similarities.add(calculateSimilarity(m.K, i, modelZ,
 							partsArray));
 
 				}
-				// printTopicWordAnnotation(modelZ,m.z, partsArray, m);
-
+		
 			}
 			else {
 				// initialize save structure for word wise topic stabilization
@@ -440,7 +382,6 @@ public class TopicTiling {
 							int topic = modelZ[p].get(t);
 							values.get(p)[t][topic]++;
 						}
-						// System.out.println(Arrays.toString(values.get(p)[t]));
 					}
 					m = inference(partsArray);
 					modelZ = m.z;
@@ -448,41 +389,22 @@ public class TopicTiling {
 					if (modeCounting)
 						modelZ = getTopicListFromRepeated(inf.values,
 								partsArray, inferenceIterations, 1);
-					// System.out.println("MODELEDED: "+modelZ);
-					// System.out.println("ZORIG    : "+m.z);
-				}
+					}
 				List<Integer>[] newZ = getTopicListFromRepeated(values,
 						partsArray, repeatInference,
 						repeatInferenceMinimumCount);
 				for (i = 0; i < newZ.length - window; i++) {
-					// int[] v1 = getVector(m.K, newZ[i]);
-					// int[] v2 = getVector(m.K, newZ[i + window]);
-					// double sim = calculateDotProduct(v1, v2);
-					// if (Double.isNaN(sim)) {
-					// similarities.add(1.0);
-					// } else {
-					// similarities.add(sim);
-					// }
 					similarities.add(calculateSimilarity(m.K, i, newZ,
 							partsArray));
 				}
-				// printTopicWordAnnotation(newZ,modelZ, partsArray, m);
-
+				
 			}
 		}
 
-		// System.out.println(similarities.size());
 		return similarities;
 	}
 
-	// public static void printDim(List<Integer>[] modelZ) {
-	// System.out.println("size: "+modelZ.length);
-	// for(List<Integer> li:modelZ){
-	// System.out.print(li.size()+"\t");
-	// }
-	// System.out.println();
-	// }
-
+	
 	private List<Integer>[] getTopicListFromRepeated(ArrayList<int[][]> values,
 			String[] partsArray, int max, int min) {
 		@SuppressWarnings("unchecked")
@@ -516,17 +438,8 @@ public class TopicTiling {
 		double[] v1 = getVector(topicNumber, z[i]);
 		double[] v2 = getVector(topicNumber, z[i + window]);
 		String arrV = Arrays.toString(v1);
-		// for(int j=0;j<v1.length;j++){
-		// if(v1[j]<2)v1[j]=0;
-		// if(v2[j]<2)v2[j]=0;
-		// v1[j]/=1*(weights[j]);
-		// v2[j]/=1*(weights[j]);
-		// v1[j]/=-1*Math.log(weights[j]);
-		// v2[j]/=-1*Math.log(weights[j]);
-		// }
+		
 		double sim = calculateDotProduct(v1, v2);
-		// System.out.println(sim + "\t" + Arrays.toString(v1) + "\t" + arrV
-		// + "\t" + partsArray[i]);
 		if (Double.isNaN(sim)) {
 			return 1.0;
 		}
@@ -537,9 +450,6 @@ public class TopicTiling {
 
 	private List<Integer> getTopicCandidates(int[] topics, int max, int min) {
 		ArrayList<Integer> candidates = new ArrayList<Integer>();
-		// for (int m = repeatInference; m >= ((int)
-		// Math.sqrt(repeatInference)); m--) {
-		// System.out.println(topics.length);
 		for (int m = max; m >= min; m--) {
 
 			for (int t = 0; t < topics.length; t++) {
@@ -564,31 +474,8 @@ public class TopicTiling {
 	}
 
 	private Model inference(String[] sentences) {
-		// long start = System.currentTimeMillis();
-		// // zu messender Code
-		//
-		// System.out.println("Duration in ms: " + (System.currentTimeMillis() -
-		// start));
-		// start = System.currentTimeMillis();
 		Model m = inf.inference(sentences);
-		// if(weights ==null){
-		// weights = new double[sentences.length][m.K];
-		// for(int i=0;i<m.theta.length;i++){
-		// for(int j =0;j<m.theta[i].length;j++){
-		// weights[i][j]=m.theta[i][j];
-		// }
-		// }
-		// }else{
-		// for(int i=0;i<m.theta.length;i++){
-		// for(int j =0;j<m.theta[i].length;j++){
-		// weights[i][j]*=m.theta[i][j];
-		// }
-		// }
-		// }
-
-		// System.out.println("Duration in ms: " + (System.currentTimeMillis() -
-		// start));
-		return m;
+				return m;
 	}
 
 	private String getPrev(List<List<Token>> sentences, int i) {
@@ -603,8 +490,6 @@ public class TopicTiling {
 				if (!sw.contains(text))
 					result += t.getCoveredText() + " ";
 				else {
-
-					// System.out.println("ASD");
 				}
 			}
 		}

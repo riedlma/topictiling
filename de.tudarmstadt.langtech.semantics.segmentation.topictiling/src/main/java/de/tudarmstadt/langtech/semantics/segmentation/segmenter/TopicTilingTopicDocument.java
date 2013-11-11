@@ -1,3 +1,26 @@
+/**
+ *	Martin Riedl
+ *	riedl@cs.tu-darmstadt.de
+ *  FG Language Technology
+ * 	Technische Universität Darmstadt, Germany
+ * 
+ * 
+ *  This file is part of TopicTiling.
+ *
+ *  TopicTiling is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  TopicTiling is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with TopicTiling.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package de.tudarmstadt.langtech.semantics.segmentation.segmenter;
 
 import java.util.ArrayList;
@@ -122,10 +145,7 @@ public class TopicTilingTopicDocument {
 				}
 			}
 		}
-		// if(segments.size()==0){
-		// System.err.println(depthScores);
-		// System.err.println(similarityScores);
-		// }
+		
 		return segments;
 	}
 
@@ -179,28 +199,7 @@ public class TopicTilingTopicDocument {
 		return depths;
 	}
 
-	// //highest left and right neighbor
-	// private double getDepths(int minimumPosition){
-	// double eps = 1e-2;
-	// int li = minimumPosition-1;
-	// double val = similarityScores.get(li);
-	// while((li-1)>=0&&similarityScores.get(li-1)>(val-eps)){
-	// li--;
-	// val = similarityScores.get(li);
-	// }
-	//
-	// int ri = minimumPosition+1;
-	// val = similarityScores.get(ri);
-	// while((ri+1)<similarityScores.size()&&similarityScores.get(ri+1)>(val-eps)){
-	// ri++;
-	// val = similarityScores.get(ri);
-	// }
-	// double depths = similarityScores.get(li) -
-	// similarityScores.get(minimumPosition)
-	// + similarityScores.get(ri) - similarityScores.get(minimumPosition);
-	// return depths;
-	// }
-
+	
 	private List<Integer> getMinima() {
 		List<Integer> minima = new ArrayList<Integer>();
 		double prev = 0;

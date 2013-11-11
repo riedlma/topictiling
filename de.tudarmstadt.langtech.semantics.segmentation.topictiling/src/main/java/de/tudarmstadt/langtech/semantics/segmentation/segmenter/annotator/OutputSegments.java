@@ -1,3 +1,26 @@
+/**
+ *	Martin Riedl
+ *	riedl@cs.tu-darmstadt.de
+ *  FG Language Technology
+ * 	Technische Universität Darmstadt, Germany
+ * 
+ * 
+ *  This file is part of TopicTiling.
+ *
+ *  TopicTiling is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  TopicTiling is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with TopicTiling.  If not, see <http://www.gnu.org/licenses/>.
+ */
+		
 package de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator;
 
 import java.io.FileNotFoundException;
@@ -23,7 +46,6 @@ public class OutputSegments extends JCasAnnotator_ImplBase {
 	@Override
 	public void initialize(UimaContext context)
 			throws ResourceInitializationException {
-		// TODO Auto-generated method stub
 		super.initialize(context);
 		if(output==null){
 			ps = System.out;
@@ -31,7 +53,6 @@ public class OutputSegments extends JCasAnnotator_ImplBase {
 			try {
 				ps = new  PrintStream(output);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -44,8 +65,6 @@ public class OutputSegments extends JCasAnnotator_ImplBase {
 		ps.println("<documentName>"+DocumentMetaData.get(aJCas).getDocumentTitle()+"</documentName>");
 		ps.println("<segments>");
 		for (SegmentScore s : JCasUtil.select(aJCas, SegmentScore.class)) {
-			// SegmentScore score = JCasUtil.select(SegmentScore.class,
-			// s).get(0);
 			ps.println("<segment>");
 			ps.println("<depthScore>"+s.getScore()+"</depthScore>");
 			ps.println("<text>");
