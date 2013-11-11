@@ -10,6 +10,11 @@
  *  ncamtu@gmail.com
  *  College of Technology
  *  Vietnam National University, Hanoi
+ *  
+ *  Martin Riedl
+ *  riedl@cs.tu-darmstadt.de
+ *  FG Language Technology
+ *  Technische Universität Darmstadt, Germany
  *
  * JGibbsLDA is a free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published
