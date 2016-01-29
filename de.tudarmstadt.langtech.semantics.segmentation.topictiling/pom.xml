@@ -31,23 +31,9 @@
   		<version>1.4.0</version>
   	</dependency>
   	<dependency>
-  		<groupId>apache-logging</groupId>
-  		<artifactId>commons-logging</artifactId>
-  		<version>1.1.0.jboss</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.apache.log4j</groupId>
-  		<artifactId>org.apache.log4j</artifactId>
-  		<version>1.2.13.v200706111418</version>
-  	</dependency>
-  	<dependency>
   		<groupId>org.uimafit</groupId>
   		<artifactId>uimafit</artifactId>
+  		<version>1.4.0</version>
   	</dependency>
   </dependencies>
-  <parent>
-  	<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-  	<artifactId>de.tudarmstadt.ukp.dkpro.core-asl</artifactId>
-  	<version>1.4.0</version>
-  </parent>
 </project>

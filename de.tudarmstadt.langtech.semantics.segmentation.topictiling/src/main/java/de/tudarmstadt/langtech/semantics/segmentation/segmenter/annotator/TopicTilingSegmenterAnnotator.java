@@ -27,11 +27,13 @@ package de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
+import org.apache.uima.cas.impl.ListUtils;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.uimafit.component.JCasAnnotator_ImplBase;
@@ -48,7 +50,7 @@ import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
 public class TopicTilingSegmenterAnnotator extends JCasAnnotator_ImplBase {
-	private boolean printSegments = false;
+	private boolean printSegments = true;
 
 	public static final String PARAM_USE_ASSIGNED_TOPICS = "UseAssgnedTopics";
 	public static final String PARAM_LDA_MODEL_DIRECTORY = "LdaModelDirectory";
@@ -59,7 +61,7 @@ public class TopicTilingSegmenterAnnotator extends JCasAnnotator_ImplBase {
 	public static final String PARAM_REPEAT_INFERENCE = "RepeatedInference";
 	public static final String PARAM_DEPTH_SCORE = "DepthScore";
 	public static final String PARAM_MODE_COUNTING = "ModeCounting";
-
+	public static final String PARAM_DEBUG="Debug";
 	@ConfigurationParameter(name = PARAM_USE_ASSIGNED_TOPICS, mandatory = false)
 	private boolean useAssignedTopics = false;;
 	@ConfigurationParameter(name = PARAM_LDA_MODEL_DIRECTORY, mandatory = true)
@@ -76,7 +78,8 @@ public class TopicTilingSegmenterAnnotator extends JCasAnnotator_ImplBase {
 	private int inferenceIteration;
 	@ConfigurationParameter(name = PARAM_MODE_COUNTING, mandatory = true)
 	private boolean modeCounting;
-
+	@ConfigurationParameter(name = PARAM_DEBUG, mandatory = false)
+	private boolean debug;
 	@ConfigurationParameter(name = PARAM_DEPTH_SCORE, mandatory = true)
 	private String depthScore;
 
@@ -115,7 +118,7 @@ public class TopicTilingSegmenterAnnotator extends JCasAnnotator_ImplBase {
 		TopicTiling tt;
 		tt = new TopicTiling(ldaModelDirectory, ldaModelName, window,
 				repeatSegmentation, repeatInferences, inferenceIteration,
-				modeCounting, depthScore, useAssignedTopics);
+				modeCounting, depthScore, useAssignedTopics,debug);
 		buffer.append("GOL: " + getGoldSegments(jcas) + "\n");
 		List<Integer> segmentPositions;
 		if (JCasUtil.select(jcas, SegmentQuantity.class).size() == 0) {
@@ -125,9 +128,19 @@ public class TopicTilingSegmenterAnnotator extends JCasAnnotator_ImplBase {
 					.iterator().next().getSegmentCount();
 			segmentPositions = tt.segment(s, segNum);
 		}
-
+		
+		int j = 0;
+		for (List<Token> ss: s){
+			String l = "";
+			for (Token t:ss){
+				l+=t.getCoveredText()+" ";
+			}
+			if(debug)System.out.println(j+"\t"+l);
+			j++;
+		}
+		if(debug)System.out.println(segmentPositions);
 		annotateSegments(jcas, segmentPositions, tt.depthScores,
-				tt.minimaPosition);
+				tt.minimaPosition,tt.similarityScores);
 	}
 
 	private void printRcode(JCas jcas, int segmentCount,
@@ -198,8 +211,55 @@ public class TopicTilingSegmenterAnnotator extends JCasAnnotator_ImplBase {
 		buffer.append(");\n");
 		return buffer;
 	}
-
+	private String getSimilarityScores(List<Double> similarityScores, int from, int to){
+		String scores = "";
+		int f = from-1;
+		if (f<0)f=0;
+		if(debug)System.out.println(f+"\t"+(to-1));
+		for(int i =f;i<=to-1;i++){
+			scores+=","+similarityScores.get(i);
+		}
+		if (scores.length()>0)scores=scores.substring(1);
+		return scores;
+	}
 	private void annotateSegments(JCas jcas, List<Integer> segmentPositions,
+			List<Double> depthScores, List<Integer> minimaPosition,List<Double> similarityScores) {
+		List<Sentence> sentences = new ArrayList<Sentence>(JCasUtil.select(jcas, Sentence.class));
+		
+		//add first segment which has no score 
+		int endIdx;
+		if (segmentPositions.get(segmentPositions.size()-1)!=(sentences.size()-1)){
+			segmentPositions.add(sentences.size()-1);
+			depthScores.add(0.0);
+		}
+		int endSentece;
+		if (segmentPositions.size()>0){
+			endIdx=sentences.get(segmentPositions.get(0)).getEnd();
+			endSentece=segmentPositions.get(0);
+		}else{
+			endIdx=sentences.get(sentences.size()-1).getEnd();
+			endSentece=sentences.size()-1;
+		}
+		addSegment(sentences.get(0).getBegin(),endIdx,0.0,getSimilarityScores(similarityScores, 0,endSentece),jcas);
+		int segEnd;
+		int segStart;
+		for(int i=1;i<segmentPositions.size();i++){
+			segStart = segmentPositions.get(i-1)+1;
+			segEnd = segmentPositions.get(i);
+			String similarities = getSimilarityScores(similarityScores, segStart, segEnd);
+			addSegment(sentences.get(segStart).getBegin(), sentences.get(segEnd).getEnd(), depthScores.get(i),similarities, jcas);
+		}
+		
+	}
+	private void addSegment(int startIdx, int endIdx, double score, String similarities,JCas jcas) {
+		SegmentScore seg = new SegmentScore(jcas,startIdx,endIdx);
+		seg.setScore(score);
+		seg.setSimilarityScores(similarities);
+		seg.addToIndexes();
+		
+	}
+
+	private void cannotateSegments(JCas jcas, List<Integer> segmentPositions,
 			List<Double> depthScores, List<Integer> minimaPosition) {
 		Iterator<Sentence> sentenceItr = JCasUtil
 				.iterator(jcas, Sentence.class);
@@ -220,11 +280,13 @@ public class TopicTilingSegmenterAnnotator extends JCasAnnotator_ImplBase {
 
 				if (sentenceCount == prevBreak) {
 					beginOffset = segmentSentence.getBegin();
+					System.out.println("BeginOffset: "+ beginOffset);
 				}
 			}
 
 			if (segmentSentence != null) {
 				endOffset = segmentSentence.getEnd();
+				System.out.println("end offset "+endOffset);
 			}
 			score.setBegin(beginOffset);
 			score.setEnd(endOffset);

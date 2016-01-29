@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Fri Nov 08 16:59:21 CET 2013
+ * Updated by JCasGen Wed Aug 26 15:50:04 CEST 2015
  * @generated */
 public class SegmentScore_Type extends Annotation_Type {
   /** @generated */
@@ -42,7 +42,7 @@ public class SegmentScore_Type extends Annotation_Type {
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("de.tudarmstadt.ukp.dkpro.semantics.type.SegmentScore");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("de.tudarmstadt.langtech.semantics.type.SegmentScore");
  
   /** @generated */
   final Feature casFeat_score;
@@ -51,14 +51,32 @@ public class SegmentScore_Type extends Annotation_Type {
   /** @generated */ 
   public double getScore(int addr) {
         if (featOkTst && casFeat_score == null)
-      jcas.throwFeatMissing("score", "de.tudarmstadt.ukp.dkpro.semantics.type.SegmentScore");
+      jcas.throwFeatMissing("score", "de.tudarmstadt.langtech.semantics.type.SegmentScore");
     return ll_cas.ll_getDoubleValue(addr, casFeatCode_score);
   }
   /** @generated */    
   public void setScore(int addr, double v) {
         if (featOkTst && casFeat_score == null)
-      jcas.throwFeatMissing("score", "de.tudarmstadt.ukp.dkpro.semantics.type.SegmentScore");
+      jcas.throwFeatMissing("score", "de.tudarmstadt.langtech.semantics.type.SegmentScore");
     ll_cas.ll_setDoubleValue(addr, casFeatCode_score, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_similarityScores;
+  /** @generated */
+  final int     casFeatCode_similarityScores;
+  /** @generated */ 
+  public String getSimilarityScores(int addr) {
+        if (featOkTst && casFeat_similarityScores == null)
+      jcas.throwFeatMissing("similarityScores", "de.tudarmstadt.langtech.semantics.type.SegmentScore");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_similarityScores);
+  }
+  /** @generated */    
+  public void setSimilarityScores(int addr, String v) {
+        if (featOkTst && casFeat_similarityScores == null)
+      jcas.throwFeatMissing("similarityScores", "de.tudarmstadt.langtech.semantics.type.SegmentScore");
+    ll_cas.ll_setStringValue(addr, casFeatCode_similarityScores, v);}
     
   
 
@@ -73,6 +91,10 @@ public class SegmentScore_Type extends Annotation_Type {
  
     casFeat_score = jcas.getRequiredFeatureDE(casType, "score", "uima.cas.Double", featOkTst);
     casFeatCode_score  = (null == casFeat_score) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_score).getCode();
+
+ 
+    casFeat_similarityScores = jcas.getRequiredFeatureDE(casType, "similarityScores", "uima.cas.String", featOkTst);
+    casFeatCode_similarityScores  = (null == casFeat_similarityScores) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_similarityScores).getCode();
 
   }
 }

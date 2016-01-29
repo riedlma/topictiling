@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Fri Nov 08 16:59:21 CET 2013
+ * Updated by JCasGen Wed Aug 26 15:50:04 CEST 2015
  * XML source: /Users/riedl/work/workspaces/intern4.2/de.tudarmstadt.langtech.semantics.segmentation.topictiling/src/main/resources/desc/type/SegmentScore.xml
  * @generated */
 public class SegmentScore extends Annotation {
@@ -69,15 +69,33 @@ public class SegmentScore extends Annotation {
    * @generated */
   public double getScore() {
     if (SegmentScore_Type.featOkTst && ((SegmentScore_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "de.tudarmstadt.ukp.dkpro.semantics.type.SegmentScore");
+      jcasType.jcas.throwFeatMissing("score", "de.tudarmstadt.langtech.semantics.type.SegmentScore");
     return jcasType.ll_cas.ll_getDoubleValue(addr, ((SegmentScore_Type)jcasType).casFeatCode_score);}
     
   /** setter for score - sets  
    * @generated */
   public void setScore(double v) {
     if (SegmentScore_Type.featOkTst && ((SegmentScore_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "de.tudarmstadt.ukp.dkpro.semantics.type.SegmentScore");
+      jcasType.jcas.throwFeatMissing("score", "de.tudarmstadt.langtech.semantics.type.SegmentScore");
     jcasType.ll_cas.ll_setDoubleValue(addr, ((SegmentScore_Type)jcasType).casFeatCode_score, v);}    
+   
+    
+  //*--------------*
+  //* Feature: similarityScores
+
+  /** getter for similarityScores - gets 
+   * @generated */
+  public String getSimilarityScores() {
+    if (SegmentScore_Type.featOkTst && ((SegmentScore_Type)jcasType).casFeat_similarityScores == null)
+      jcasType.jcas.throwFeatMissing("similarityScores", "de.tudarmstadt.langtech.semantics.type.SegmentScore");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((SegmentScore_Type)jcasType).casFeatCode_similarityScores);}
+    
+  /** setter for similarityScores - sets  
+   * @generated */
+  public void setSimilarityScores(String v) {
+    if (SegmentScore_Type.featOkTst && ((SegmentScore_Type)jcasType).casFeat_similarityScores == null)
+      jcasType.jcas.throwFeatMissing("similarityScores", "de.tudarmstadt.langtech.semantics.type.SegmentScore");
+    jcasType.ll_cas.ll_setStringValue(addr, ((SegmentScore_Type)jcasType).casFeatCode_similarityScores, v);}    
   }
 
     

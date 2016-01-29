@@ -46,6 +46,8 @@ public class TopicTiling {
 	public enum DepthScore {
 		DIRECT_NEIGHBOR, HIGHEST_NEIGHBOR
 	}
+	
+	private boolean debug = false;
 
 	public boolean useAssignedTopics = false;
 	public List<String> sw;
@@ -70,7 +72,7 @@ public class TopicTiling {
 	public TopicTiling(String ldaModelDirectory, String ldaModelName,
 			int window, int repeatSegmentation, int repeatInference,
 			int inferenceIteration, boolean modeCounting, String depthScore,
-			boolean topicsAssigned) {
+			boolean topicsAssigned, boolean debug) {
 		super();
 		useAssignedTopics = topicsAssigned;
 
@@ -84,6 +86,7 @@ public class TopicTiling {
 		this.repeatSegmentation = repeatSegmentation;
 		this.inferenceIterations = inferenceIteration;
 		this.modeCounting = modeCounting;
+		this.debug=debug;
 		if (!useAssignedTopics) {
 			opt = new LDACmdOption();
 			opt.dir = this.ldaModelDirectory;
@@ -101,7 +104,7 @@ public class TopicTiling {
 
 		this(ldaModelDirectory, ldaModelName, window, repeatSegmentation,
 				repeatInference, inferenceIteration, modeCounting, depthScore,
-				false);
+				false,false);
 	}
 
 	public List<Integer> segment(List<List<Token>> sentences) {
@@ -145,8 +148,10 @@ public class TopicTiling {
 	private List<Integer> segment2(List<List<Token>> sentences) {
 
 		similarityScores = getSimilarityScores(sentences);
-
+		
+		if(debug)System.out.println(similarityScores);
 		minimaPosition = getMinima();
+		if(debug)System.out.println(minimaPosition);
 		depthScores = getDepthScores();
 		List<Integer> segments = new ArrayList<Integer>();
 		if (segmentNumber < 0)
@@ -157,7 +162,7 @@ public class TopicTiling {
 
 		if (segments.size() > 1
 				&& segments.get(segments.size() - 1) != sentences.size()) {
-			segments.add(sentences.size() - 1);
+			segments.add(sentences.size() -1);
 		}
 		else {
 			System.err.println("segment size:" + segments.size());
@@ -197,17 +202,17 @@ public class TopicTiling {
 			String other = new String();
 			for (String t : tokens) {
 				if (inf.globalDict.word2id.containsKey(t)) {
-					System.out.print(t + ":" + newZ[i].get(j) + " ");
+					if(debug)System.out.print(t + ":" + newZ[i].get(j) + " ");
 					other += t + ":" + otherZ[i].get(j) + " ";
 					j++;
 				}
 				else {
-					System.out.print(t + " ");
+					if(debug)System.out.print(t + " ");
 					other += t + " ";
 				}
 			}
-			System.out.println();
-			System.out.println(other);
+			if(debug)System.out.println();
+			if(debug)System.out.println(other);
 
 			i++;
 		}
@@ -333,8 +338,11 @@ public class TopicTiling {
 						else
 							topicIdList.add(topicIds.get(0).getTopicId());
 					}
+//					System.out.println("FUCK");
+//					System.out.print(token.getCoveredText()+":"+topicIds.get(topicIds.size()-1)+" ");
 				}
-				System.out.println(topicIdList);
+				if(debug)System.out.println();
+				if(debug)System.out.println(topicIdList);
 				newZ[i++] = topicIdList;
 			}
 			for (i = 0; i < newZ.length - window; i++) {
@@ -363,14 +371,37 @@ public class TopicTiling {
 				modelZ = getTopicListFromRepeated(inf.values, partsArray,
 						inferenceIterations, 1);
 			if (repeatInference == 1) {
+//				System.out.println(modelZ.length);
+				
+				for (i=0;i<sentences.size();i++){
+//					System.out.println(sentences.get(i).size());
+//					System.out.println(modelZ[i].size());
+					int j2 = 0;
+					for (int j =0; j<sentences.get(i).size();j++){
+						String w = sentences.get(i).get(j).getCoveredText();
+						
+						if (inf.globalDict.word2id.containsKey(w)){
+								j2+=1;
+								if (modelZ[i].size()<j2+1){
+									if(debug)System.out.print(w+":-100");
+								}else{
+									if(debug)System.out.print(w+":"+modelZ[i].get(j2)+" ");
+								}
+						}else{
+							if(debug)System.out.print(w+":-1 ");
+								
+						}
+					}
+					if(debug)System.out.println();
+					if(debug)System.out.println(parts.get(i));
+				}
 				for (i = 0; i < partsArray.length - window; i++) {
 							similarities.add(calculateSimilarity(m.K, i, modelZ,
 							partsArray));
 
 				}
 		
-			}
-			else {
+			} else {
 				// initialize save structure for word wise topic stabilization
 				ArrayList<int[][]> values = new ArrayList<int[][]>();
 				for (int k = 0; k < partsArray.length; k++) {
@@ -421,7 +452,7 @@ public class TopicTiling {
 					newZ[s].add(topic);
 				}
 				else {
-					System.out.println("No Candidates found");
+					if(debug)System.out.println("No Candidates found");
 
 				}
 

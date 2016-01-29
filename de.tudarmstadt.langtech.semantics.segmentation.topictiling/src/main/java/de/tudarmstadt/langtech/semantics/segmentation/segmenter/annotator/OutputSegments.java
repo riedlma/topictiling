@@ -25,6 +25,7 @@ package de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.Collection;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.uima.UimaContext;
@@ -64,13 +65,27 @@ public class OutputSegments extends JCasAnnotator_ImplBase {
 		ps.println("<document>");
 		ps.println("<documentName>"+DocumentMetaData.get(aJCas).getDocumentTitle()+"</documentName>");
 		ps.println("<segments>");
-		for (SegmentScore s : JCasUtil.select(aJCas, SegmentScore.class)) {
+		Collection<SegmentScore> ss = JCasUtil.select(aJCas, SegmentScore.class);
+		int i = 0;
+		for (SegmentScore s : ss) {
+			if(i==0){
+				if(s.getBegin()!=0){
+					ps.println("<segment>");
+					ps.println("<depthScore></depthScore>");
+					ps.println("<text>");
+					ps.println(StringEscapeUtils.escapeXml(aJCas.getDocumentText().substring(0,s.getBegin())));
+					ps.println("</text>");
+					ps.println("</segment>");
+				}
+			}
 			ps.println("<segment>");
+//			ps.println("<similarityScores>"+s.getSimilarityScores()+"</similarityScores>");
 			ps.println("<depthScore>"+s.getScore()+"</depthScore>");
 			ps.println("<text>");
 			ps.println(StringEscapeUtils.escapeXml(s.getCoveredText()));
 			ps.println("</text>");
 			ps.println("</segment>");
+			i+=1;
 		}
 		ps.println("</segments>");
 		ps.println("</document>");

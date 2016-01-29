@@ -52,6 +52,8 @@ public class RunTopicTilingOnFile {
 		String topicModelName;
 		@Option(name="-dn",usage="Use the direct neighbor otherwise the highest neighbor will be used (default false)",required=false)
 		boolean useDirectNeighbor=false;
+		@Option(name="-d",usage="Print debugging output (default false)",required=false)
+		boolean debug=false;
 		@Option(name="-i",usage="Number of inference iterations used to annotate words with topic IDs (default 100)",required=false)
 		int inferenceIterations=100;
 		@Option(name="-m",usage="Use mode counting (true/false) (default=true)",required=false)
@@ -116,6 +118,8 @@ public class RunTopicTilingOnFile {
 							opt.windowSize,
 							TopicTilingSegmenterAnnotator.PARAM_DEPTH_SCORE,
 							neighbor,
+							TopicTilingSegmenterAnnotator.PARAM_DEBUG,
+							opt.debug,
 							TopicTilingSegmenterAnnotator.PARAM_MODE_COUNTING,
 							opt.modeCounting);
 		AnalysisEngine outputSegments = AnalysisEngineFactory.createPrimitive(OutputSegments.class,OutputSegments.PARAM_OUTPUT,opt.output);

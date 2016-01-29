@@ -70,8 +70,12 @@ public class RunTopicTilingOnFile {
 			neighbor = "DIRECT_NEIGHBOR";
 		final CollectionReader reader = CollectionReaderFactory.createCollectionReader(
 				TextReader.class,
-				TextReader.PARAM_PATH, opt.fileDirectory,
-				TextReader.PARAM_PATTERNS, new String[] { "[+]" + opt.filePattern });
+				TextReader.PARAM_PATH, opt.fileDirectory
+				,
+
+
+				TextReader.PARAM_PATTERNS, new String[] { "[+]"+opt.filePattern }
+				);
 		
 		AnalysisEngine segmenter = AnalysisEngineFactory.createPrimitive(StanfordSegmenter.class);
 		AnalysisEngine topicTiling = AnalysisEngineFactory
