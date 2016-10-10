@@ -39,6 +39,7 @@ import org.uimafit.factory.CollectionReaderFactory;
 import org.uimafit.pipeline.SimplePipeline;
 
 import de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator.OutputSegments;
+import de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator.SimpleSegmenter;
 import de.tudarmstadt.langtech.semantics.segmentation.segmenter.annotator.TopicTilingSegmenterAnnotator;
 import de.tudarmstadt.ukp.dkpro.core.io.text.TextReader;
 import de.tudarmstadt.ukp.dkpro.core.stanfordnlp.StanfordSegmenter;
@@ -56,6 +57,9 @@ public class RunTopicTilingOnFile {
 		boolean debug=false;
 		@Option(name="-i",usage="Number of inference iterations used to annotate words with topic IDs (default 100)",required=false)
 		int inferenceIterations=100;
+		@Option(name="-s",usage="Use simple segmentation (default=false)",required=false)
+		boolean useSimpleSegmentation=false;
+		
 		@Option(name="-m",usage="Use mode counting (true/false) (default=true)",required=false)
 		boolean modeCounting=true;
 		@Option(name="-w",usage="Window size used to calculate the sentence similarity", required=false)
@@ -101,6 +105,9 @@ public class RunTopicTilingOnFile {
 				TextReader.PARAM_PATTERNS, new String[] { "[+]" + opt.filePattern });
 		
 		AnalysisEngine segmenter = AnalysisEngineFactory.createPrimitive(StanfordSegmenter.class);
+		if(opt.useSimpleSegmentation){
+			segmenter = AnalysisEngineFactory.createPrimitive(SimpleSegmenter.class);
+		}
 		AnalysisEngine topicTiling = AnalysisEngineFactory
 					.createPrimitive(
 							TopicTilingSegmenterAnnotator.class,
