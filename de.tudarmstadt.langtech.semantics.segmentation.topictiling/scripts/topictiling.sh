@@ -1,0 +1,1 @@
+java -Xmx1G -cp $(echo dependency/*jar| tr ' ' ':'):de.tudarmstadt.langtech.semantics.segmentation.topictiling-0.0.2.jar de.tudarmstadt.langtech.semantics.segmentation.segmenter.RunTopicTilingOnFile $@
