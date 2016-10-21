@@ -4,7 +4,6 @@ import static org.uimafit.factory.AnalysisEngineFactory.createPrimitive;
 
 import java.io.IOException;
 import java.text.BreakIterator;
-import java.util.Locale;
 
 import org.apache.uima.UIMAException;
 import org.apache.uima.analysis_engine.AnalysisEngine;
@@ -14,12 +13,9 @@ import org.uimafit.factory.AnalysisEngineFactory;
 import org.uimafit.factory.JCasFactory;
 import org.uimafit.pipeline.SimplePipeline;
 
-import com.googlecode.jweb1t.JWeb1TIndexer;
-
 import de.tudarmstadt.langtech.lda.annotator.GibbsLdaDocumentBasedTopicIdAnnotator;
 import de.tudarmstadt.langtech.lda.annotator.GibbsLdaSentenceBasedTopicIdAnnotator;
 import de.tudarmstadt.langtech.lda.annotator.GibbsLdaTopicIdAnnotator;
-import de.tudarmstadt.langtech.lda.annotator.GibbsLdaTopicModelAnnotator;
 import de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
