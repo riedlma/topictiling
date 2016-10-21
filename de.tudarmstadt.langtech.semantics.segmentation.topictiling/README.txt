@@ -18,6 +18,13 @@ zip file and execute the topictiling.sh (Unix-based system) or
 topictiling.bat (Windows-based system). The output is given in 
 an XML format with suggested topical boundaries.
 
+HINT FOR NON-LATIN LANGUAGES:
+If you want to process e.g. Chinese, Arabic languages with TopicTiling
+you have to provide tokenized text (both for TopicTiling and GibbsLDA)
+and in addition use the flag -s which disables the Stanford tokenization
+and uses instead a simple whitespace tokenizer that expects one sentence
+per line
+
 
 The parameters of the script are shown when no parameters are given: 
 
@@ -33,6 +40,7 @@ The parameters of the script are shown when no parameters are given:
  [java]  -out VAL : File the content is written to (otherwise stdout will be used)
  [java]  -ri N    : Use the repeated inference method
  [java]  -rs N    : Use the repeated segmentation
+ [java]  -s       : Use simple segmentation (default=false)
  [java]  -tmd VAL : Directory of the topic model (GibbsLDA should be used)
  [java]  -tmn VAL : Name of the topic model (GibbsLDA should be used)
  [java]  -w N     : Window size used to calculate the sentence similarity
