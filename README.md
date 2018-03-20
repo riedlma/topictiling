@@ -7,6 +7,8 @@ Dirichlet Allocation (LDA) topic model. TopicTiling performs
 the segmentation in linear time and thus is computationally 
 less expensive than other LDA-based segmentation methods. 
 
+I have moved the project from SourceForge to Github. Whereas the code is still the same, I have updated the documentation on this page. 
+
 For the LDA computation we use [JGibbLda](http://jgibblda.sourceforge.net/) and modified it slightly, making this project to be licenced under GPL.
 
 
@@ -15,6 +17,7 @@ Table of Content
 
 
   * [Usage of the binaries](#usage-of-the-binaries)
+  * [Usage for non-latin languages](#Usage-for-non-latin-languages)
   * [Usage of the source code](#usage-of-the-source-code)
   * [Citation](#citation)
   * [License](#license)
@@ -101,6 +104,10 @@ The output of the algorithms is in XML format:
 
 The code returns all maxima where a boundary might be set. If you know the number of segments, you can just select the N semgents with the highest depthScore scores. 
 
+
+Usage for non-latin languages
+===============
+The current version uses the Stanford segmenter for tokenization. However, this tokenizer does not play well on languages without any latin characters (e.g. Chinese, Arabic, Hebrew, Japanese, etc.). In order to segment such languages, segment the texts beforehand and use the parameter *-s* that disables the tokenization and expects all words segmented by white spaces.
 
 Usage of the source code
 ===============
