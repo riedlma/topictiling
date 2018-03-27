@@ -32,7 +32,7 @@ The tool has been developed and tested using unix-based systems.
 As TopicTiling is written in Java it should also run on Windows
 machines. 
 
-To start TopicTiling, you have to download the binary ([zip](https://github.com/riedlma/topictiling/releases/download/v1.0/topictiling_v1.0.zip)[tar.gz](https://github.com/riedlma/topictiling/releases/download/v1.0/topictiling_v1.0.tar.gz)) and decompress the archive. To execute the segmentation method, open the commandline and navigate to the uncompressed folder
+To start TopicTiling, you have to download the binary ([zip](https://github.com/riedlma/topictiling/releases/download/v1.0/topictiling_v1.0.zip)|[tar.gz](https://github.com/riedlma/topictiling/releases/download/v1.0/topictiling_v1.0.tar.gz)) and decompress the archive. To execute the segmentation method, open the commandline and navigate to the uncompressed folder
 
 ```
 cd topictiling_v1.0
@@ -147,6 +147,8 @@ If you use SECOS, please cite one of the following papers/article:
 
 License
 ===============
+As JGibbLDA is published under GPL 2.0 license, which is contained in the current repository, I had to license via this license.
+
 TopicTiling is a free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation.
 
 TopicTiling is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
