@@ -47,7 +47,7 @@ bash topictiling.bat
 ```
 and a shell script to start the segmentation for unix-based operation systems:
 ```
-bash topictiling.sh
+sh topictiling.sh
 ```
 
 These commands will output all parameters of TopicTiling:
