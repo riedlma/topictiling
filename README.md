@@ -85,7 +85,7 @@ topicmodel/wordmap.txt
 ```
 
 
-For the segmentation, we advise to repeat the inference five times (*-ri 5*) (see [paper](www.aclweb.org/anthology/W12-0703)). To start the segmentation, you can then use the following command, considering that the files you want to segment are stored in the folder *files_to_segment* and use as file ending "txt":
+For the segmentation, we advise to repeat the inference five times (*-ri 5*) (see [paper](http://www.aclweb.org/anthology/W12-0703)). To start the segmentation, you can then use the following command, considering that the files you want to segment are stored in the folder *files_to_segment* and use as file ending "txt":
 
 ```
 sh topictiling.sh -ri 5 -tmd topicmodel -tmn mode-final -fp "*txt" -fd files_to_segment
@@ -119,7 +119,7 @@ Import both projects into Eclipse. The LDA project contains JGibbLda with slight
 Compute a topic model
 ===============
 
-To compute the topic model with LDA, documents are required that represent the domain of texts, the segmentation method will be applied to. For the computation you can use either [JGibbLDA](http://jgibblda.sourceforge.net/) (written in Java) or the faster C++ version [GibbsLda++](http://gibbslda.sourceforge.net/). To get an impression of the usage of different parameters of LDA you can have a look at our paper: [Sweeping through the Topic Space: Bad luck? Roll again!](www.aclweb.org/anthology/W12-0703). In general, we would advise training a topic model with 100 topics, alpha with 50/(number of topics) and alpha equals 0.01.
+To compute the topic model with LDA, documents are required that represent the domain of texts, the segmentation method will be applied to. For the computation you can use either [JGibbLDA](http://jgibblda.sourceforge.net/) (written in Java) or the faster C++ version [GibbsLda++](http://gibbslda.sourceforge.net/). To get an impression of the usage of different parameters of LDA you can have a look at our paper: [Sweeping through the Topic Space: Bad luck? Roll again!](http://www.aclweb.org/anthology/W12-0703). In general, we would advise training a topic model with 100 topics, alpha with 50/(number of topics) and alpha equals 0.01.
 
 
 
