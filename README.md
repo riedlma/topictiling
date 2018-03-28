@@ -3,8 +3,8 @@
 <img src="https://github.com/riedlma/topictiling/raw/master/topictiling.png" alt="TopicTiling" width="400">
 
 Topic Tiling is an LDA-based Text Segmentation algorithm. 
-The algorithm is inspired by the well-known TextTiling 
-algorithm developed by Marti Hearst, and segments documents using the Latent 
+The algorithm is inspired by the well-known [TextTiling](http://www.aclweb.org/anthology/J97-1003) 
+algorithm developed by [Marti Hearst](http://people.ischool.berkeley.edu/~hearst/), and segments documents using the Latent 
 Dirichlet Allocation (LDA) topic model. TopicTiling performs 
 the segmentation in linear time and thus is computationally 
 less expensive than other LDA-based segmentation methods. 
