@@ -125,11 +125,22 @@ To compute the topic model with LDA, documents are required that represent the d
 
 Citation
 ===============
-If you use SECOS, please cite one of the following papers/article:
+If you use TextTiling, please cite one of the following papers/article:
 
 ```
 
-@inproceedings{riedl12_jlcl,
+@article{Riedl:jlcl,
+ author = {Martin Riedl and Chris Biemann},
+ title = {{Text Segmentation with Topic Models }},
+ journal = {Journal for Language Technology and Computational Linguistics (JLCL)},
+year={2012},
+  volume={27},
+  number={47-69},
+  pages={13-24},
+  url={http://www.jlcl.org/2012_Heft1/jlcl2012-1-3.pdf}
+}
+
+@inproceedings{riedl12_acl,
 	author = {Martin Riedl and Chris Biemann},
 	title = {TopicTiling: A Text Segmentation Algorithm based on LDA},
 	year = {2012},
@@ -137,20 +148,9 @@ If you use SECOS, please cite one of the following papers/article:
 	booktitle = {Proceedings of the Student Research Workshop of the 50th Meeting of the Association for
                Computational Linguistics},
 	pages = {37--42},
-	url={www.jlcl.org/2012_Heft1/jlcl2012-1-3.pdf},
+	url={http://www.aclweb.org/anthology/W12-3307},
 }
 
-@inproceedings{riedl12_naacl,
-	author = {Riedl, Martin and Biemann, Chris},
-	title = {How Text Segmentation Algorithms Gain from Topic Models},
-	year = {2012},
-	address = {Montreal, Canada},
-	booktitle = {Proceedings of the Conference of the North American Chapter of the
-               Association for Computational Linguistics: Human Language Technologies},
-	series={NAACL-HLT 2012},
-	url={http://www.aclweb.org/anthology/N12-1064},
-	pages={553--557 }
-}
 ```
 
 
