@@ -22,7 +22,7 @@ Table of Content
   * [Usage for non latin languages](#usage-for-non-latin-languages)
   * [Usage of the source code](#usage-of-the-source-code)
   * [Compute a topic model](#compute-a-topic-model)
-  * [Split output file by documents](#Split-output-file-by-documents)
+  * [Split output file by documents](#split-output-file-by-documents)
   * [Citation](#citation)
   * [License](#license)
 
