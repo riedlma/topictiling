@@ -22,6 +22,7 @@ Table of Content
   * [Usage for non latin languages](#usage-for-non-latin-languages)
   * [Usage of the source code](#usage-of-the-source-code)
   * [Compute a topic model](#compute-a-topic-model)
+  * [Split output file by documents](#Split-output-file-by-documents)
   * [Citation](#citation)
   * [License](#license)
 
@@ -121,6 +122,12 @@ Compute a topic model
 
 To compute the topic model with LDA, documents are required that represent the domain of texts, the segmentation method will be applied to. For the computation you can use either [JGibbLDA](http://jgibblda.sourceforge.net/) (written in Java) or the faster C++ version [GibbsLda++](http://gibbslda.sourceforge.net/). To get an impression of the usage of different parameters of LDA you can have a look at our paper: [Sweeping through the Topic Space: Bad luck? Roll again!](http://www.aclweb.org/anthology/W12-0703). In general, we would advise training a topic model with 100 topics, alpha with 50/(number of topics) and alpha equals 0.01.
 
+Split output file by documents
+===============
+The output of the standard TopicTiling method returns one file with segments for all documents. If you want to have one file with segments for each document you can use the python script in the repository called: *split_output.py*. For this, The output of TopicTiling should be redirected to a file (e.g. *output_file*). The python script expects two parameters: the output file of TopicTiling (*output_file*) and a folder that is created and where all single document files are stored (*output_folder*)
+```
+python split_output.py output_file output_folder
+```
 
 
 Citation
