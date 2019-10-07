@@ -73,6 +73,8 @@ These commands will output all parameters of TopicTiling:
  [java]  -w N     : Window size used to calculate the sentence similarity
 ```
 
+We recommend using the mode counting (-m). In each inference iteration of LDA, a topicId is assigned to a word. In the default implementation the assignment is done via sampling. Thus, it could happen that a word has a different topicId in each inference step. To stabelize the topicId assignment, we store each topicId assignment for each inference iteration and at the end we use the one that has been sampled most.
+
 In order to test TopicTiling, you also require a topic model that has been computed with either [JGibbLDA](http://jgibblda.sourceforge.net/) or [GibbsLda++](http://gibbslda.sourceforge.net/). Some description for the computation is given [here](#compute-a-topic-model).
 
 Once you have computed a topic model, you might have a folder called *topicmodel* with the following files:
