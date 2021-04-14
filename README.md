@@ -91,7 +91,7 @@ topicmodel/wordmap.txt
 For the segmentation, we advise to repeat the inference five times (*-ri 5*) (see [paper](http://www.aclweb.org/anthology/W12-0703)). To start the segmentation, you can then use the following command, considering that the files you want to segment are stored in the folder *files_to_segment* and use as file ending "txt":
 
 ```
-sh topictiling.sh -ri 5 -tmd topicmodel -tmn mode-final -fp "*txt" -fd files_to_segment
+sh topictiling.sh -ri 5 -tmd topicmodel -tmn model-final -fp "*txt" -fd files_to_segment
 ```
 
 The output of the algorithms is in XML format:
